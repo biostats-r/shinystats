@@ -16,3 +16,5 @@ Imports:
     bslib,
     shiny
 RoxygenNote: 7.3.0
+URL: https://github.com/biostats-r/shinystats
+BugReports: https://github.com/biostats-r/shinystats/issues
