@@ -9,11 +9,12 @@ ar_app <- function() {
   ui <- page_sidebar(
     title = "First-order autoregressive process",
     sidebar = sidebar(
+      h4(withMathJax("$$y_t = \\rho_1 y_{t-1} + \\epsilon_t$$")),
       sliderInput("ar", "Autoregression coefficient", value = 0.5, min = -0.9, max = 0.9, step = 0.1),
       checkboxInput("show_model", label = "Show OSL model fit", value = FALSE)
     ),
     # Show a plot of the generated distribution
-    h3(withMathJax("$$x_t = \\rho_1 x_{t-1} + \\epsilon_t$$")),
+
     navset_tab(
 
       nav_panel(title = "Autoregressive process",
@@ -23,6 +24,8 @@ ar_app <- function() {
       ),
       nav_panel(
         title = "Effect on models",
+        layout_column_wrap(
+          width = 1/2,
         card(
           "100 fitted models",
           plotOutput("slopes")
@@ -31,6 +34,7 @@ ar_app <- function() {
           "Distribution of p-values",
           plotOutput("hist_p")
         )
+      )
       )
     )
 
