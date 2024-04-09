@@ -27,11 +27,11 @@ ar_app <- function() {
         layout_column_wrap(
           width = 1/2,
         card(
-          "100 fitted models",
+          card_header(HTML("100 models fitted to AR or <span style = 'color: #832424'>i.d.d.</span> series")),
           plotOutput("slopes")
         ),
         card(
-          "Distribution of p-values",
+          card_header("Distribution of p-values"),
           plotOutput("hist_p")
         )
       )
