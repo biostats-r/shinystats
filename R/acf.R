@@ -19,9 +19,9 @@ acf_app <- function() {
     h4(withMathJax("$$\\hat\\rho_j = \\frac{\\sum_{t=j+1}^T(y_t-\\bar{y})(y_{t-j}-\\bar{y})}{\\sum_{t=1}^T(y_t-\\bar{y})^2}$$")),
 
     layout_column_wrap(
-    # Show a plot of the generated ts with lag
-    card(plotOutput("lagPlot")),
-    card(plotOutput("lagCorPlot"))
+      # Show a plot of the generated ts with lag
+      card(plotOutput("lagPlot")),
+      card(plotOutput("lagCorPlot"))
     ),
     value_box(title = textOutput("cor_label"), value = textOutput("acf_lag"))
 
