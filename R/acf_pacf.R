@@ -10,8 +10,8 @@ acf_pacf_app <- function() {
     title = "Autoregressive process",
 
     sidebar = sidebar(
-      h4(withMathJax("$$y_t = \\sum_{i = 1}^{p}\\rho_{i} y_{t-i} + \\epsilon_t$$")),
-      h4(withMathJax("$$y_t = \\rho_{1} y_{t-1} + \\rho_{2} y_{t-2} + \\cdots +\\epsilon_t$$")),
+      h5(withMathJax("$$y_t = \\sum_{i = 1}^{p}\\rho_{i} y_{t-i} + \\epsilon_t$$")),
+      h5(withMathJax("$$y_t = \\rho_{1} y_{t-1} + \\rho_{2} y_{t-2} + \\cdots +\\epsilon_t$$")),
 
       radioButtons("order", "Autoregressive order", choices = 1:2, selected = 1),
       uiOutput("ar_coef_sliders"),
@@ -57,7 +57,8 @@ acf_pacf_app <- function() {
   # update slider so only stationary coef possible
     observeEvent(input$ar1, {
       if(length(ar_names()) > 1){
-        updateSliderInput(inputId = "ar2", max = 1- abs(input$ar1) - 0.01)
+        updateSliderInput(inputId = "ar2",
+                          max = 1 - abs(input$ar1) - 0.01)
       }
     })
 
