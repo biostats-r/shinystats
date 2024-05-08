@@ -38,6 +38,10 @@ acf_pacf_app <- function() {
     ar_names <- reactive(paste0("ar", seq_len(input$order)))
     # make ui sliders
     output$ar_coef_sliders <- renderUI({
+      # freeze reactives
+      ar_names() |> map(\(n)freezeReactiveValue(input, n))
+
+
       ar1_start <- 0.5
       if(length(ar_names()) == 1) {
         list(
