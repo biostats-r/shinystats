@@ -39,7 +39,7 @@ acf_pacf_app <- function() {
     # make ui sliders
     output$ar_coef_sliders <- renderUI({
       # freeze reactives
-      ar_names() |> map(\(n)freezeReactiveValue(input, n))
+      ar_names() |> lapply(\(n)freezeReactiveValue(input, n))
 
 
       ar1_start <- 0.5
