@@ -39,7 +39,7 @@ acf_pacf_app <- function() {
     # make ui sliders
     output$ar_coef_sliders <- renderUI({
       # freeze reactives
-      ar_names() |> lapply(\(n)freezeReactiveValue(input, n))
+      ar_names() |> lapply(\(n) freezeReactiveValue(input, n))
 
 
       ar1_start <- 0.5
@@ -51,7 +51,7 @@ acf_pacf_app <- function() {
       } else {
         list(
           sliderInput(inputId = ar_names()[1], label = "Autoregression coefficient 1", value = ar1_start, min = -1.99, max = 1.99, step = 0.01),
-          sliderInput(inputId = ar_names()[2], label = "Autoregression coefficient 2", value = ar1_start, min = -0.99, max = 1 - abs(ar1_start) - 0.01, step = 0.01)
+          sliderInput(inputId = ar_names()[2], label = "Autoregression coefficient 2", value = ar1_start/2, min = -0.99, max = 1 - abs(ar1_start) - 0.01, step = 0.01)
         )
 
       }
