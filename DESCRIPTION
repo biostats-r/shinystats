@@ -12,6 +12,7 @@ Description: Light-weight shiny apps for teaching statistics concepts. Designed
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 4.1.0)
 Imports: 
     bslib,
     shiny
