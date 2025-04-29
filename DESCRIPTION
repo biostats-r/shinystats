@@ -7,8 +7,8 @@ Authors@R: c(
         comment = c(ORCID = "https://orcid.org/0000-0001-9826-3076"))
   )
 Maintainer: Richard J. Telford <richard.telford@uib.no>
-Description: Light-weight shiny apps for teaching statistics concepts. Designed
-    for use with shinylive in quarto presentations.
+Description: Light-weight shiny apps for teaching statistics concepts. 
+    Designed for use with shinylive in quarto presentations.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
