@@ -7,5 +7,22 @@
 t_test_power_app()
 }
 \description{
-T-test power app
+A shiny app to visualise how the effect size and number of observations affect
+the power of a t-test.
+
+The first panel show the expected distribution of two a control and treatment group
+with a specified difference in means and standard deviation. The uncertainty of the means
+can also be shown.
+
+The second panel shows, in the upper pane, the distribution of t-values under the null hypothesis.
+The red portion of the curve show values that exceed the 95% significance thresholds.
+These represent false positives (type 1 errors).
+The lower pane shows the distribution of t-values under the alternative hypothesis.
+The red portion of the curve show values that exceed the 95% significance thresholds.
+These are true positives. The area under the curve in the red region is the power of the test.
+}
+\examples{
+\dontrun{
+t_test_power_app()
+}
 }

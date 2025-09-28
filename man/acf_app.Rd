@@ -2,10 +2,28 @@
 % Please edit documentation in R/acf.R
 \name{acf_app}
 \alias{acf_app}
-\title{Auto-regressive app}
+\title{Autocorrelation function (ACF) app}
 \usage{
 acf_app()
 }
 \description{
-Auto-regressive app
+A shiny app to help understand understand the autocorrelation function.
+
+The first plot shows a simulated time series from a first order
+autoregressive process with the autoregressive coefficient set by the slider.
+When the lag slider is set above zero, a lagged version of the
+time series appears.
+
+The second plot shows the correlation between the time series and the
+lagged version.
+When the lag is zero, the time series is perfectly correlated with itself.
+
+The third plot shows the sample autocorrelation function (ACF) for the
+time series with the current lag highlighted.
+}
+\examples{
+\dontrun{
+acf_app()
+}
+
 }

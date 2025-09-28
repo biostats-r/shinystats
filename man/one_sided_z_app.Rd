@@ -9,3 +9,8 @@ one_sided_z_app()
 \description{
 One sided z-test app
 }
+\examples{
+\dontrun{
+one_sided_z_app()
+}
+}

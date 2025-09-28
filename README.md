@@ -82,16 +82,23 @@ shinystats::ar_app()
 ```
 ````
 
-## Available Apps so far
+## Available Apps
+
+### Power analysis
+
+- `climate_effect_app()` - visualise effect sizes with climate data
+- `one_sided_z_app()` - power of a z-test
+- `t_test_power_app()` - power of a t-test
+- `t_test_sim_app()` - power of a t-test by simulation
+- `misreported_cohens_d_app()` - effect of misreporting Cohen's d
+
 
 ### Linear regression
 
 - `coef_explain_app()` - how to interpret the coefficients of a two-way ANOVA 
 - `f_test_app()` - interpreting the F statistic
-- `one_sided_z_app()` - power of a z-test
 - `regression_line_ss_app()` - fit a regression and find the sum of squares 
 - `sample_app()` - in development
-- `t_test_power_app()` - in development
 - `x_distribution_app()` - shows that it is the distribution of residuals that matter
 
 ### Autocorrelation

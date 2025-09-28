@@ -1,8 +1,19 @@
 #' Regression line ss app
+#' @description
+#' A shiny app to help understand residuals of a linear model.
+#' Draw the best fit line by click twice, once at each end,
+#' then choose how to display the residuals.
+#' Click again to draw a new line.
+#'
 #' @import shiny
 #' @import bslib
 #' @importFrom graphics abline par rect segments
 #' @importFrom stats lm rnorm
+#' @examples
+#' \dontrun{
+#' regression_line_ss_app()
+#' }
+#'
 #' @export
 
 regression_line_ss_app <- function() {
@@ -50,10 +61,12 @@ regression_line_ss_app <- function() {
       } else {
         # We already had a first click, so this is the second click.
         # Make slope and intercept from the previous click and this one.
-        v$slope <- (input$plot_click$y - v$click1$y) / (input$plot_click$x - v$click1$x)
-        v$intercept <- (input$plot_click$y + v$click1$y) / 2 - v$slope * (input$plot_click$x + v$click1$x) / 2
+        v$slope <- (input$plot_click$y - v$click1$y) /
+          (input$plot_click$x - v$click1$x)
+        v$intercept <- (input$plot_click$y + v$click1$y) / 2 -
+          v$slope * (input$plot_click$x + v$click1$x) / 2
 
-        # predictions & residuals
+        # predictions and residuals
         v$pred <- v$intercept + v$slope * data$x
         v$resid <- v$pred - data$y
         # And clear the first click so the next click starts a new line.

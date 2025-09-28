@@ -1,0 +1,91 @@
+---
+title: "apps_demo"
+format:
+  html:
+    resources: 
+      - shinylive-sw.js
+filters:
+  - shinylive
+---
+
+## All apps
+
+```{r}
+library(shinystats)
+ls("package:shinystats", pattern = "_app$")
+```
+
+
+
+## Distributions
+
+```{shinylive-r}
+#| label: count-app
+#| standalone: true
+shinystats::count_app()
+```
+
+```{shinylive-r}
+#| label: prop-app
+#| standalone: true
+shinystats::prop_app()
+```
+
+## Regression
+
+```{shinylive-r}
+#| label: coef-explain-app
+#| standalone: true
+shinystats::coef_explain_app()
+```
+
+```{shinylive-r}
+#| label: f-test-app
+#| standalone: true
+shinystats::f_test_app()
+```
+
+```{shinylive-r}
+#| label: regression-line-ss-app
+#| standalone: true
+shinystats::regression_line_ss_app()
+```
+
+```{shinylive-r}
+#| label: one-sided-z-app
+#| standalone: true
+shinystats::one_sided_z_app()
+```
+
+```{shinylive-r}
+#| label: x-distribution-app
+#| standalone: true
+shinystats::x_distribution_app()
+```
+
+
+## In progress
+"sample_app"  "t_test_power_app" 561 8550
+
+## Autocorrelation
+
+```{shinylive-r}
+#| label: ar-app
+#| standalone: true
+shinystats::ar_app()
+```
+
+```{shinylive-r}
+#| label: acf-app
+#| standalone: true
+shinystats::acf_app()
+```
+
+```{shinylive-r}
+#| label: acf-pacf-app
+#| standalone: true
+shinystats::acf_pacf_app()
+```
+
+
+

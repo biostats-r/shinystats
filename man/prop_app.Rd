@@ -7,5 +7,11 @@
 prop_app()
 }
 \description{
-Proportion app
+A shiny app to explore the binomial distribution.
+}
+\examples{
+\dontrun{
+prop_app()
+}
+
 }

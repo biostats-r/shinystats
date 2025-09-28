@@ -9,3 +9,8 @@ x_distribution_app()
 \description{
 x-distributions
 }
+\examples{
+\dontrun{
+x_distribution_app()
+}
+}

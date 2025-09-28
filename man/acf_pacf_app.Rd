@@ -2,10 +2,18 @@
 % Please edit documentation in R/acf_pacf.R
 \name{acf_pacf_app}
 \alias{acf_pacf_app}
-\title{Acf app}
+\title{ACF PACF app}
 \usage{
 acf_pacf_app()
 }
 \description{
-Acf app
+A shiny app to help visualise what the autocorrelation function (ACF) and the
+partial autocorrelation function (PACF) look like for autogressive processes.
+The number of autoregressive coefficients and their values can be selected.
+}
+\examples{
+\dontrun{
+acf_pacf_app()
+}
+
 }

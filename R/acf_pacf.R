@@ -1,19 +1,31 @@
-#' Acf app
+#' ACF PACF app
+#' @description
+#' A shiny app to help visualise what the autocorrelation function (ACF) and the
+#' partial autocorrelation function (PACF) look like for autogressive processes.
+#' The number of autoregressive coefficients and their values can be selected.
+#'
 #' @import shiny
 #' @import bslib
 #' @importFrom graphics par
 #' @importFrom stats arima.sim anova acf pacf
+#' @examples
+#' \dontrun{
+#' acf_pacf_app()
+#' }
+#'
 #' @export
 #'
 acf_pacf_app <- function() {
   ui <- page_sidebar(
     title = "Autoregressive process",
-
     sidebar = sidebar(
-      h5(withMathJax("$$y_t = \\sum_{i = 1}^{p}\\rho_{i} y_{t-i} + \\epsilon_t$$")),
+      width = 300,
       h5(withMathJax("$$y_t = \\rho_{1} y_{t-1} + \\rho_{2} y_{t-2} + \\cdots +\\epsilon_t$$")),
+      h5(withMathJax("$$y_t = \\sum_{i = 1}^{p}\\rho_{i} y_{t-i} + \\epsilon_t$$")),
 
-      radioButtons("order", "Autoregressive order", choices = 1:2, selected = 1),
+      radioButtons("order", "Autoregressive order",
+        choices = 1:2, selected = 1
+      ),
       uiOutput("ar_coef_sliders"),
     ),
     # Show a plot of the generated distribution
@@ -29,9 +41,6 @@ acf_pacf_app <- function() {
       card_header("pACF"),
       plotOutput("pacfPlot")
     ),
-
-
-
   )
 
   server <- function(input, output, session) {
@@ -43,26 +52,40 @@ acf_pacf_app <- function() {
 
 
       ar1_start <- 0.5
-      if(length(ar_names()) == 1) {
+      if (length(ar_names()) == 1) {
         list(
-          sliderInput(inputId = ar_names()[1], label = "Autoregression coefficient 1", value = ar1_start, min = -0.99, max = 0.99, step = 0.01)
+          sliderInput(
+            inputId = ar_names()[1],
+            label = "Autoregression coefficient 1",
+            value = ar1_start, min = -0.99,
+            max = 0.99, step = 0.01
           )
-
+        )
       } else {
         list(
-          sliderInput(inputId = ar_names()[1], label = "Autoregression coefficient 1", value = ar1_start, min = -1.99, max = 1.99, step = 0.01),
-          sliderInput(inputId = ar_names()[2], label = "Autoregression coefficient 2", value = ar1_start/2, min = -0.99, max = 1 - abs(ar1_start) - 0.01, step = 0.01)
+          sliderInput(
+            inputId = ar_names()[1],
+            label = "Autoregression coefficient 1",
+            value = ar1_start, min = -1.99, max = 1.99,
+            step = 0.01
+          ),
+          sliderInput(
+            inputId = ar_names()[2],
+            label = "Autoregression coefficient 2",
+            value = ar1_start / 2, min = -0.99,
+            max = 1 - abs(ar1_start) - 0.01, step = 0.01
+          )
         )
-
       }
-
     })
 
-  # update slider so only stationary coef possible
+    # update slider so only stationary coef possible
     observeEvent(input$ar1, {
-      if(length(ar_names()) > 1){
-        updateSliderInput(inputId = "ar2",
-                          max = 1 - abs(input$ar1) - 0.01)
+      if (length(ar_names()) > 1) {
+        updateSliderInput(
+          inputId = "ar2",
+          max = 1 - abs(input$ar1) - 0.01
+        )
       }
     })
 
@@ -80,22 +103,21 @@ acf_pacf_app <- function() {
       y
     })
 
- # plots
+    # plots
     output$arPlot <- renderPlot({
-      par(mar = c(2.2, 2.2, 0.5, 1), cex = 1.5, tcl = -0.1, mgp = c(1.2, 0.2, 0))
+      par(par_list)
       plot(x, y(), type = "l", xlab = "Time", ylab = "Value")
     })
 
     output$acfPlot <- renderPlot({
-      par(mar = c(2.2, 2.2, 0.5, 1), cex = 1.5, tcl = -0.1, mgp = c(1.2, 0.2, 0))
+      par(par_list)
       acf(y())
     })
 
     output$pacfPlot <- renderPlot({
-      par(mar = c(2.2, 2.2, 0.5, 1), cex = 1.5, tcl = -0.1, mgp = c(1.2, 0.2, 0))
+      par(par_list)
       pacf(y())
     })
-
   }
 
   shinyApp(ui, server)

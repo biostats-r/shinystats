@@ -9,3 +9,32 @@ ar_app()
 \description{
 Auto-regressive app
 }
+\details{
+This shiny app allows the user to explore the effect of autocorrelation on
+regression models if the autocorrelation is ignored.
+The app simulates and plots a first order autoregressive process,
+a time series where the next value depends only the previous value.
+The strength of the
+autoregressive coefficient can be changed with a slider to values strictly
+between -1 and 1. Positive values generate positive autocorrelation
+(neighbouring values are more similar than expected);
+negative values generate negative autocorrelation
+(neighbouring values are less similar than expected).
+
+A linear regression model can be added to the plot. The model assumes that
+there is no autocorrelation. If the autocorrelation is high, the slope is
+often quite different from zero.
+
+In the second tab, the results of 100 linear models fitted to autocorrelated
+time series and 100 models fitted to time series with independent
+observations are shown.
+A histogram shows the distribution of p-values for the models fitted to
+autocorrelated time series.
+If there was not autocorrelation, the histogram is expected to be flat.
+}
+\examples{
+\dontrun{
+ar_app()
+}
+
+}

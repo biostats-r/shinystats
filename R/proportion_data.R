@@ -1,13 +1,20 @@
 #' Proportion app
+#' @description
+#' A shiny app to explore the binomial distribution.
+#'
 #' @import shiny
 #' @import bslib
 #' @importFrom graphics barplot
 #' @importFrom stats dbinom
+#' @examples
+#' \dontrun{
+#' prop_app()
+#' }
+#'
 #' @export
 
 prop_app <- function() {
   ui <- page_sidebar(
-
     # Application title
     title = h1("Distribution for proportion data"),
 
@@ -16,27 +23,31 @@ prop_app <- function() {
       accordion(
         accordion_panel(
           title = "Binomial Distribution",
-          p("The binomial distribution is used when we have success/failure. You can use it for"),
+          p(
+            "The binomial distribution is used when we have success/failure.
+            You can use it for"
+          ),
           tags$ol(
             tags$li("Presence/absence data"),
             tags$li("Success/failure data (8 out of 10 seeds germinated)"),
             tags$li("Proportion data (80% of seeds germinates)")
           )
-
         ),
-        sliderInput("ntrials",
-                    "Number of trials",
-                    min = 1,
-                    max = 10,
-                    round = TRUE,
-                    value = 1,
-                    step = 1
+        sliderInput(
+          "ntrials",
+          "Number of trials",
+          min = 1,
+          max = 10,
+          round = TRUE,
+          value = 1,
+          step = 1
         ),
-        sliderInput("prob",
-                    "Probability of Success",
-                    min = 0,
-                    max = 1,
-                    value = 0.5
+        sliderInput(
+          "prob",
+          "Probability of Success",
+          min = 0,
+          max = 1,
+          value = 0.5
         )
       )
     ),
@@ -48,22 +59,20 @@ prop_app <- function() {
     )
   )
 
-
-
-
   # Define server logic required to draw a histogram
   server <- function(input, output) {
-
     output$distPlot <- renderPlot({
       # generate bins based on input$bins from ui.R
       axis_max <- input$ntrials
       x <- 0:axis_max
       y <- dbinom(x, size = input$ntrials, prob = input$prob)
 
-
-      par(cex = 1.5, mar = c(3, 3, 1, 1), tcl = -0.1, mgp = c(2, 0.2, 0))
-      plot(x, y,
-        type = "n", ylim = c(0, max(max(y), y[x==0] + (input$zero))),
+      par(par_list)
+      plot(
+        x,
+        y,
+        type = "n",
+        ylim = c(0, max(max(y), y[x == 0] + (input$zero))),
         xlab = "Number of successes",
         ylab = "Density"
       )

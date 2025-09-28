@@ -7,5 +7,14 @@
 regression_line_ss_app()
 }
 \description{
-Regression line ss app
+A shiny app to help understand residuals of a linear model.
+Draw the best fit line by click twice, once at each end,
+then choose how to display the residuals.
+Click again to draw a new line.
+}
+\examples{
+\dontrun{
+regression_line_ss_app()
+}
+
 }

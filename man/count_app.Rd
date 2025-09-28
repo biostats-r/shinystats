@@ -7,5 +7,13 @@
 count_app()
 }
 \description{
-Count app
+A shiny app to explore distributions for count data,
+with options for the Poisson and Negative binomial distributions,
+with or without zero inflation.
+}
+\examples{
+\dontrun{
+count_app()
+}
+
 }
