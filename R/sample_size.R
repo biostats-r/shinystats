@@ -31,6 +31,7 @@ sample_app <- function() {
 
     output$plot <- renderPlot(
       {
+        par(par_list)
         hist(data(),
           breaks = 20,
           xlim = c(-2, 2),

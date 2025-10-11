@@ -84,7 +84,7 @@ f_dist_app <- function() {
       y2 <- df(x2, df1 = input$numerator, df2 = input$denominator)
       # df2 <- data.frame(x = x2, y = y2)
 
-      par(cex = 1.5, mar = c(3, 3, 1, 1), tcl = -0.1, mgp = c(2, 0.2, 0))
+      par(par_list)
       plot(
         x,
         y,

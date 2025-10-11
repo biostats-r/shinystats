@@ -56,7 +56,7 @@ t_test_server <- function(input, output) {
         x    <- seq(-ceiling(xmax), ceiling(xmax), length.out = 600)
         y <- dt(x, df =  input$df)
 
-        plot(x, y, type = "n")
+        plot(x, y, type = "n", ylab = "Density")
         polygon(c(x[1], x, x[200]), c(0, y, 0), col = "grey90")
 
         # critical regions

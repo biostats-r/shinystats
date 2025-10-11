@@ -30,8 +30,8 @@ penguin_coef_explain_app <- function() {
 
     ),
     card(
-      card_header("Model formula"),
-      textOutput("formula")
+      textOutput("formula"),
+      fill = FALSE
     ),
     card(
       card_header("Coefficients"),
@@ -116,12 +116,15 @@ penguin_coef_explain_app <- function() {
     })
 
 
-    output$formula <- renderText(form2())
+    output$formula <- renderText(
+      paste0("lm(", form2(), ", data = penguins)")
+      )
     output$coef_table <- renderTable(
       coef_table(),
       sanitize.text.function = function(x) x
     )
     output$plot <- renderPlot({
+      par(par_list)
       set.seed(1)
       f <- as.formula(form2())
       fc <- as.character(f)
@@ -129,12 +132,27 @@ penguin_coef_explain_app <- function() {
       if (fc[3] == "1") {
         stripchart(data[,input$response],
                    method = "jitter", jitter = 0.1,
-                   vertical = TRUE, pch = 1, ylim = ylim
+                   vertical = TRUE, pch = 1, ylim = ylim,
+                   ylab = fc[2]
         )
       } else {
+        spp <- levels(data$species)
+        sex <- levels(data$sex)
+        group_names <-
+           if ("species" %in% input$pred & "sex" %in% input$pred) {
+          paste("\n", rep(spp, times = length(sex)), rep(sex, each = length(spp)), sep = "\n")
+          } else if ("species" %in% input$pred) {
+            spp
+          } else if ("sex" %in% input$pred) {
+            sex
+          } else {
+            1
+          }
+
         stripchart(f,
                    data = data, method = "jitter", jitter = 0.1,
-                   vertical = TRUE, pch = 1, ylim = ylim
+                   vertical = TRUE, pch = 1, ylim = ylim,
+                   group.names = group_names
         )
       }
 
